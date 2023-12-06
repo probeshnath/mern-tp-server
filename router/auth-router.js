@@ -1,4 +1,5 @@
 const express = require('express');
+const authcontrollers = require('../controllers/auth-controller');
 const router = express.Router();
 
 
@@ -7,13 +8,9 @@ const router = express.Router();
 // })
 
 // or
-router.route("/").get((req,res)=>{
-    res.status(200).send("This is my Home Route using router  test .....!!!")
-})
+router.route("/").get(authcontrollers.home)
 
-router.route("/register").get((req,res) =>{
-    res.status(200).send("Register page...")
-})
+router.route("/register").get(authcontrollers.register)
 
 
 module.exports = router;
