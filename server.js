@@ -4,6 +4,9 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 
+// middleware
+app.use(express.json())
+
 
 // mount the router
 app.use("/api/auth", router)
