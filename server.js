@@ -1,6 +1,7 @@
 const express = require('express');
 require('dotenv').config()
-const router = require('./router/auth-router');
+const authRoute = require('./router/auth-router');
+const contactRoute = require('./router/contact-router')
 const connectDB = require('./utils/db');
 const errorMiddleware = require('./middlewares/error-middleware');
 const app = express();
@@ -12,7 +13,8 @@ app.use(express.json())
 
 
 // mount the router
-app.use("/api/auth", router)
+app.use("/api/auth", authRoute)
+app.use("/api/form", contactRoute)
 
 
 app.get("/",(req,res)=>{
