@@ -29,4 +29,24 @@ const signupSchema = z.object({
 
 })
 
-module.exports = signupSchema;
+// login object schema
+// creating an object schema
+const signInSchema = z.object({
+ 
+    email: z
+    .string({required_error: "Email is required"})
+    .trim()
+    // .email( {message: "Invalid Email Address"})
+    .min(3, {message: "Email must be at least of 3 character."})
+    .max(255, {message: "Email must not be at more than 255 characters."}),
+
+
+    password: z
+    .string({required_error: "Password is required"})
+    .trim()
+    .min(7, {message: "Password must be at least of 7 character."})
+    .max(1024, {message: "Password must not be at more than 1024 characters."}),
+
+})
+
+module.exports = {signupSchema,signInSchema};
