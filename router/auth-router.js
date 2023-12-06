@@ -1,5 +1,7 @@
 const express = require('express');
 const authcontrollers = require('../controllers/auth-controller');
+const validate = require('../middlewares/validate-middleware');
+const signupSchema = require('../validators/auth-validator');
 const router = express.Router();
 
 
@@ -10,7 +12,7 @@ const router = express.Router();
 // or
 router.route("/").get(authcontrollers.home)
 
-router.route("/register").post(authcontrollers.register)
+router.route("/register").post(validate(signupSchema), authcontrollers.register)
 router.route("/login").post(authcontrollers.login)
 
 

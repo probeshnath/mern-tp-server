@@ -47,7 +47,8 @@ try {
         return res.status(400).json({message: "Invalid Credentials"})
     }
 
-    const user = await bcrypt.compare(password, userExist.password)
+    // const user = await bcrypt.compare(password, userExist.password)
+    const user = await userExist.comparePassword(password)
 
     if(user){
         res.status(200).send({message: "Login Successful", token: await userExist.generateToken(), userId: userExist._id.toString() })
@@ -57,8 +58,8 @@ try {
 
 
 } catch (error) {
-    res.status(500).send({message: "page not found"})
+    res.status(500).send({message: "server error"})
 }
 }
 
-module.exports = {home,register,login}
+module.exports = {home,register,login} 
